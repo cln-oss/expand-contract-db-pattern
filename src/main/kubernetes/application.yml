@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: expand-contract-db-pattern
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  namespace: expand-contract-db-pattern
+  name: app-service
+spec:
+  selector:
+    role: app
+  ports:
+    - port: 8080
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application
+  namespace: expand-contract-db-pattern
+spec:
+  replicas: 3
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      role: app
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        role: app
+    spec:
+      containers:
+        - name: quarkus-app
+          image: localhost:5000/quarkus/expand-contract-db-pattern:1.0
+          imagePullPolicy: Always
+          readinessProbe:
+            periodSeconds: 10
+            initialDelaySeconds: 20
+            httpGet:
+              path: /health/ready
+              port: 8080
+          livenessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 2
+            httpGet:
+              path: /health/live
+              port: 8080
+          env:
+            - name: quarkus.datasource.jdbc.url
+              value: jdbc:postgresql://db-service:5432/example-db
+            - name: quarkus.datasource.username
+              value: admin
+            - name: quarkus.datasource.password
+              value: admin
+          ports:
+            - containerPort: 8080
+
