@@ -13,7 +13,7 @@
 * PostgreSQL
 * Flyway 
 
-## Patterns used
+## Techniques used
 
 * [Rolling Updates](https://en.wikipedia.org/wiki/Rolling_release)
 * [Expand/Contract pattern](https://martinfowler.com/bliki/ParallelChange.html)
@@ -22,9 +22,9 @@
 
 ## Packaging and running the example in a kubernetes cluster
 
-1. Run a local docker registry:
+1. Run a local docker registry (Minikube - `minikube addons enable registry`) and forward registry port:
 ```
-docker run -d -p 5000:5000 --restart=always --name registry registry:2
+kubectl port-forward --namespace kube-system registry-tdnrl 5000:5000
 ```
 2. Package, build docker image and push it to local registry:
 ```
@@ -50,4 +50,4 @@ kubectl apply -f ./src/main/kubernetes/database.yml
 kubectl apply -f ./src/main/kubernetes/application.yml
 ```
 
-7. Access the application on `http://localhost:8080`
+7. Access the application on `http://<Minikube NodeIP>:30036`
