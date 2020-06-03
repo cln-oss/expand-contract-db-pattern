@@ -4,7 +4,7 @@
     getAllCustomers();
     $(".fab").click(() => {
         $.ajax({
-            url: "https://namey.muffinlabs.com/name.json?count=1&with_surname=true&frequency=common",
+            url: "/v1/random-names/",
             type: 'GET',
             dataType: 'json',
             success: addCustomer
@@ -13,7 +13,7 @@
 
     function addCustomer(customerNames) {
         $.ajax({
-            url: "http://localhost:8080/v1/customers",
+            url: "/v1/customers",
             type: 'post',
             dataType: 'json',
             contentType: 'application/json',
@@ -37,7 +37,7 @@
 
     function getAllCustomers() {
         $.ajax({
-            url: "http://localhost:8080/v1/customers",
+            url: "/v1/customers",
             type: 'get',
             dataType: 'json',
             contentType: 'application/json',
