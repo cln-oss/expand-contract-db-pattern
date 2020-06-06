@@ -11,7 +11,10 @@ import java.util.stream.Collectors;
 public class CustomerMapper {
 
     public Customer toCustomer(NewCustomerRequest req) {
-        return new Customer(0L, req.name);
+        var splittedName = req.name.split(" ");
+        var firstName = splittedName[0];
+        var lastName = splittedName[1];
+        return new Customer(0L, firstName, lastName);
     }
 
     public List<CustomerResponse> toResponses(List<Customer> customers) {

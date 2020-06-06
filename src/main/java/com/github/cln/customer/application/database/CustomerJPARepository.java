@@ -16,16 +16,17 @@ public class CustomerJPARepository implements CustomerRepository {
    @Override
    public Customer insert(Customer customer) {
        var entity = new CustomerEntity();
-       entity.name = customer.getName();
+       entity.firstName = customer.getFirstName();
+       entity.lastName = customer.getLastName();
        entity.persist();
-       return new Customer(entity.id, entity.name);
+       return new Customer(entity.id, entity.firstName, entity.lastName);
    }
 
    @Override
    public List<Customer> fetchAll() {
        List<CustomerEntity> entities = CustomerEntity.listAll();
        return entities.stream()
-               .map(entity -> new Customer(entity.id, entity.name))
+               .map(entity -> new Customer(entity.id, entity.firstName, entity.lastName))
                .collect(Collectors.toList());
    }
 }

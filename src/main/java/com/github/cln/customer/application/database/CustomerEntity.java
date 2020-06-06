@@ -2,6 +2,7 @@ package com.github.cln.customer.application.database;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,5 +17,9 @@ public class CustomerEntity extends PanacheEntityBase {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    public Long id;
 
-   public String name;
+   @Column(name = "first_name")
+   public String firstName;
+
+   @Column(name = "last_name")
+   public String lastName;
 }
