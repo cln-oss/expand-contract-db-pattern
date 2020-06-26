@@ -20,6 +20,10 @@
 * [Evolutionary Database Design](https://databaserefactoring.com/index.html)
 
 
+## Architecture
+
+![Application Architecture](./images/architecture.PNG)
+
 ## Packaging and running the example in a kubernetes cluster
 
 1. Run a local docker registry (Minikube - `minikube addons enable registry`) and forward registry port:
