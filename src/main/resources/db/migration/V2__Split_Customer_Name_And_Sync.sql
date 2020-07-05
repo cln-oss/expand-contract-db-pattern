@@ -16,7 +16,7 @@ $$ LANGUAGE plpgsql;
 UPDATE customer SET first_name = extract_first_name(name);
 UPDATE customer SET last_name = extract_last_name(name);
 
-CREATE OR REPLACE FUNCTION syncronize_name()
+CREATE OR REPLACE FUNCTION synchronize_name()
     RETURNS trigger AS
 $BODY$
 BEGIN
@@ -39,4 +39,4 @@ CREATE TRIGGER syncronize_name_trigger
     BEFORE INSERT OR UPDATE
     ON customer
     FOR EACH ROW
-EXECUTE PROCEDURE syncronize_name();
+EXECUTE PROCEDURE synchronize_name();
