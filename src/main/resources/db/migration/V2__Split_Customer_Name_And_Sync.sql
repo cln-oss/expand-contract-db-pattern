@@ -35,7 +35,7 @@ BEGIN
 END;
 $BODY$ language plpgsql;
 
-CREATE TRIGGER syncronize_name_trigger
+CREATE TRIGGER synchronize_name_trigger
     BEFORE INSERT OR UPDATE
     ON customer
     FOR EACH ROW
