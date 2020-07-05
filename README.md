@@ -19,7 +19,6 @@
 * [Expand/Contract pattern](https://martinfowler.com/bliki/ParallelChange.html)
 * [Evolutionary Database Design](https://databaserefactoring.com/index.html)
 
-
 ## Architecture
 
 ![Application Architecture](./images/architecture.PNG)
@@ -30,6 +29,7 @@
 ```
 kubectl port-forward --namespace kube-system registry-<id> 5000:5000
 ```
+
 2. Run the deployment script:
 ```
 ./minikube-deploy.sh

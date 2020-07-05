@@ -20,10 +20,12 @@ CREATE OR REPLACE FUNCTION syncronize_name()
     RETURNS trigger AS
 $BODY$
 BEGIN
+    -- If V2
     IF NEW.name IS NULL THEN
         NEW.name := NEW.first_name || ' ' || NEW.last_name;
     END IF;
 
+    -- If V1
     IF NEW.name IS NOT NULL THEN
         NEW.first_name := extract_first_name(NEW.name);
         NEW.last_name := extract_last_name(NEW.name);
