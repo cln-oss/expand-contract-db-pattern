@@ -12,7 +12,9 @@ public class CustomerMapper {
 
     public CustomerEntity toCustomerEntity(NewCustomerRequest req) {
         var entity = new CustomerEntity();
-        entity.name = req.name;
+        var nameSplitByWhitespace = req.name.split(" ");
+        entity.firstName = nameSplitByWhitespace[0];
+        entity.lastName = nameSplitByWhitespace[1];
         return entity;
     }
 
@@ -25,7 +27,7 @@ public class CustomerMapper {
     public CustomerResponse toResponse(CustomerEntity entity) {
         var response = new CustomerResponse();
         response.id = entity.id;
-        response.name = entity.name;
+        response.name = entity.firstName + " " + entity.lastName;
         return response;
     }
 }
