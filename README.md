@@ -28,30 +28,13 @@
 
 1. Run a local docker registry (Minikube - `minikube addons enable registry`) and forward registry port:
 ```
-kubectl port-forward --namespace kube-system registry-tdnrl 5000:5000
+kubectl port-forward --namespace kube-system registry-<id> 5000:5000
 ```
-2. Package, build docker image and push it to local registry:
+2. Run the deployment script:
 ```
-./mvnw package
-```
-3. Deploy Weave Scope monitoring tool:
-```
-kubectl apply -f "https://cloud.weave.works/k8s/scope.yaml?k8s-version=$(kubectl version | base64 | tr -d '\n')"
-``` 
-
-4. Forward Weave Scope port:
-```
-kubectl port-forward -n weave "$(kubectl get -n weave pod --selector=weave-scope-component=app -o jsonpath='{.items..metadata.name}')" 4040
+./minikube-deploy.sh
 ```
 
-5. Deploy PostgreSQL database pod:
-```
-kubectl apply -f ./src/main/kubernetes/database.yml
-```
+3. Access the application on `http://<Minikube NodeIP>:30036`
 
-6. Deploy application server pods:
-```
-kubectl apply -f ./src/main/kubernetes/application.yml
-```
-
-7. Access the application on `http://<Minikube NodeIP>:30036`
+4. Access WeaveScope on `http://localhost:4040`

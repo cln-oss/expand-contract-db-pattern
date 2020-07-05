@@ -1,12 +1,12 @@
-package com.github.cln.customer.application.rest;
+package com.github.cln.customer.api;
+
+import com.github.cln.customer.facade.CustomerFacade;
+import com.github.cln.customer.facade.NewCustomerRequest;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import com.github.cln.customer.application.dto.NewCustomerRequest;
-import com.github.cln.customer.application.facade.CustomerFacade;
 
 @Path("/v1/customers")
 public class CustomerResource {

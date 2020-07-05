@@ -1,4 +1,4 @@
-package com.github.cln.customer.application.rest;
+package com.github.cln.customer.api;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.github.cln.customer.application.util.RandomNameGeneratorUtil;
+import com.github.cln.customer.util.RandomNameGeneratorUtil;
 
 
 @Path("/v1/random-names")

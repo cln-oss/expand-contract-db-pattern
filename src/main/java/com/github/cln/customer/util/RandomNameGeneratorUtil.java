@@ -1,4 +1,4 @@
-package com.github.cln.customer.application.util;
+package com.github.cln.customer.util;
 
 import java.util.List;
 import java.util.Random;

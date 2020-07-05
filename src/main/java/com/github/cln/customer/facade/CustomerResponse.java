@@ -1,4 +1,4 @@
-package com.github.cln.customer.application.dto;
+package com.github.cln.customer.facade;
 
 public class CustomerResponse {
     public long id;

@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
         - name: quarkus-app
-          image: localhost:5000/quarkus/expand-contract-db-pattern:2.0
+          image: localhost:5000/quarkus/expand-contract-db-pattern:1.0
           imagePullPolicy: Always
           readinessProbe:
             periodSeconds: 10
