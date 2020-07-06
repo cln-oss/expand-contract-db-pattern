@@ -40,9 +40,13 @@ kubectl port-forward --namespace kube-system registry-<id> 5000:5000
 ./minikube-deploy.sh
 ```
 
-3. Access the application URL by:
+3. Get `ngnix` IP from `ADDRESS` column using:
 ```
-minikube service app-service --url -n custom
+kubectl get ingress -n custom
 ```
 
-4. Access WeaveScope on `http://localhost:4040`
+4. Map `customer.domain` to the IP provided by step above to `etc/hosts`
+
+5. Access the application on `http://customer.domain`
+
+6. Access WeaveScope on `http://localhost:4040`

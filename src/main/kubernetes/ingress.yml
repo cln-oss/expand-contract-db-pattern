@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: yonder-app
+    - host: customer.domain
       http:
         paths:
           - path: /
