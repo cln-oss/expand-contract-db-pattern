@@ -24,7 +24,7 @@ metadata:
   namespace: custom
 spec:
   replicas: 3
-#  minReadySeconds: 10
+  minReadySeconds: 10
   selector:
     matchLabels:
       role: app
