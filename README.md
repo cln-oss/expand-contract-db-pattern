@@ -22,7 +22,7 @@
 
 ## Architecture
 
-![Application Architecture](./images/architecture.PNG)
+![Application Architecture](./images/diagram.PNG)
 
 ## Packaging and running the example in a kubernetes cluster
 
