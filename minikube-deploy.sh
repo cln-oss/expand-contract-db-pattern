@@ -4,10 +4,11 @@
 
 ./mvnw clean package
 
-# 2. Deploy database & application into the Kubernetes cluster
+# 2. Deploy database, application and ingress into the Kubernetes cluster
 
 kubectl apply -f ./src/main/kubernetes/database.yml
 kubectl apply -f ./src/main/kubernetes/application.yml
+kubectl apply -f ./src/main/kubernetes/ingress.yml
 
 # 3. Deploy WeaveScope
 

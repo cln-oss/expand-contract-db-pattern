@@ -25,7 +25,12 @@
 
 ## Packaging and running the example in a kubernetes cluster
 
-1. Run a local docker registry (Minikube - `minikube addons enable registry`) and forward registry port:
+1. Start `minikube` with the following addons:
+```
+minikube start --addons registry, ingress
+```
+
+2. Forward the image registry port:
 ```
 kubectl port-forward --namespace kube-system registry-<id> 5000:5000
 ```
@@ -35,6 +40,9 @@ kubectl port-forward --namespace kube-system registry-<id> 5000:5000
 ./minikube-deploy.sh
 ```
 
-3. Access the application on `http://<Minikube NodeIP>:30036`
+3. Access the application URL by:
+```
+minikube service app-service --url -n custom
+```
 
 4. Access WeaveScope on `http://localhost:4040`
