@@ -1,10 +1,12 @@
 (function ($) {
     "use strict";
 
+    getCurrentVersion();
     getAllCustomers();
+
     $(".fab").click(() => {
         $.ajax({
-            url: "/v1/random-names/",
+            url: "/v1/random-names",
             type: 'GET',
             dataType: 'json',
             success: addCustomer
@@ -56,6 +58,18 @@
                     `
                     )
                 });
+            },
+        });
+    }
+
+    function getCurrentVersion() {
+        $.ajax({
+            url: "/v1/versions",
+            type: 'get',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (version) {
+                $('#appVersion').text(version['applicationVersion'])
             },
         });
     }
