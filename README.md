@@ -36,18 +36,32 @@ minikube start --addons registry, ingress
 kubectl port-forward --namespace kube-system registry-<id> 5000:5000
 ```
 
-2. Run the deployment script:
+3. Run the deployment script:
 ```
 ./minikube-deploy.sh
 ```
 
-3. Get `ngnix` IP from `ADDRESS` column using:
+4. Get `ngnix` IP from `ADDRESS` column using:
 ```
 kubectl get ingress -n custom
 ```
 
-4. Map `customer.domain` to the IP provided by step above to `etc/hosts`
+5. Map `customer.domain` to the IP provided by step above to `etc/hosts`
 
-5. Access the application on `http://customer.domain`
+6. Access the application on `http://customer.domain`
 
-6. Access WeaveScope on `http://localhost:4040`
+## Expand/Contract demo explanation
+
+Beside `master` branch you have 3 additional branches that represent 3 backward compatible database versions.
+
+###The problem:
+> You need to split **name** column into two separate columns, **first name** and **last name** and to maintain backward compatibility with the previous version.
+
+###Solution:
+
+| Migration version           | State      | Database description                                                                                                                           |
+|-----------------------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| V1.0                        | Starting   | Create a **customer** table that contains an **ID** and a **name**                                                                             |
+| V2.0                        | Expand     | Append **first_name** and **last_name** column. Bidirectional synchronization using triggers between **name** and **(first_name, last_name)**  |
+| V2.0 or V1.0 (for rollback) | Transition | This state doesn't require any database modification.                                                                                          |
+| V3.0                        | Contract   | After all clients migrated to V2.0, in this state you can remove the old column **name** and also the synchronization triggers.                |
